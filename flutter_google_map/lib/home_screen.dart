@@ -23,14 +23,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+  List<Marker> _markers = <Marker>[];
+
+  static const CameraPosition _kGooglePlex =  CameraPosition(
+    target: LatLng(33.6844, 73.0479),
     zoom: 14,
   );
 
-  List<Marker> _markers = <Marker>[];
 
   @override
   void initState() {
@@ -50,16 +51,48 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: _kGooglePlex,
-        mapType: MapType.normal,
-        myLocationEnabled: true,
-        compassEnabled: false,
-        markers: Set<Marker>.of(_markers),
-        onMapCreated: (GoogleMapController controller){
-          _controller.complete(controller);
-        },
+      body: SafeArea(
+        child: GoogleMap(
+          initialCameraPosition: _kGooglePlex,
+          mapType: MapType.normal,
+          zoomControlsEnabled: true,
+          zoomGesturesEnabled: true,
+          myLocationButtonEnabled: true,
+          myLocationEnabled: true,
+          trafficEnabled: false,
+          rotateGesturesEnabled: true,
+          buildingsEnabled: true,
+          markers: Set<Marker>.of(_markers),
+          onMapCreated: (GoogleMapController controller){
+            _controller.complete(controller);
+          },
+        ),
       ),
     );
   }
 }
+
+// List<Marker> list = const [
+//   Marker(
+//       markerId: MarkerId('SomeId'),
+//       position: LatLng(33.6844, 73.0479),
+//       infoWindow: InfoWindow(
+//           title: 'The title of the marker'
+//       )
+//   ),
+//   Marker(
+//       markerId: MarkerId('SomeId'),
+//       position: LatLng( 33.738045,73.084488),
+//       infoWindow: InfoWindow(
+//           title: 'e-11 islamabd'
+//       )
+//   ),
+// ];
+//
+// @override
+// void initState() {
+//   // TODO: implement initState
+//   super.initState();
+//   _markers.addAll(
+//       list);
+// }
