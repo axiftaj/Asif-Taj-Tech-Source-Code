@@ -1,6 +1,6 @@
 {
-    "name": "flutter_google_map",
-    "short_name": "flutter_google_map",
+    "name": "googlemap",
+    "short_name": "googlemap",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

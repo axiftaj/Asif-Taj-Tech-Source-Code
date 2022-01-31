@@ -1,10 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_google_map">
+    package="com.example.googlemap">
    <application
-        android:label="flutter_google_map"
+        android:label="googlemap"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDAmUHmAnmkjKmXLDg5lYGm6dfkVaHsbUM"/>
+
+
+       <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
