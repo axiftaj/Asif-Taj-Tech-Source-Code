@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:geocoder2/geocoder2.dart';
-
+import 'package:flutter_geocoder/geocoder.dart';
 
 class ConvertLatLangToAddress extends StatefulWidget {
   const ConvertLatLangToAddress({Key? key}) : super(key: key);
@@ -39,20 +37,19 @@ class _ConvertLatLangToAddressState extends State<ConvertLatLangToAddress> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
 
-          FetchGeocoder fetchGeocoder = await Geocoder2.getAddressFromCoordinates(
-              latitude: 40.714224,
-              longitude: -73.961452,
-              googleMapApiKey: "AIzaSyDAmUHmAnmkjKmXLDg5lYGm6dfkVaHsbUM");
-          var first = fetchGeocoder.results.first.toJson();
-          print(first);
-
-          FetchGeocoder fetchGeocoder1 = await Geocoder2.getCoordinatesFromAddress(
-              address: "277 Bedford Ave, Brooklyn, NY 11211, USA",
-              googleMapApiKey: "GOOGLE_MAP_API_KEY");
-          var second = fetchGeocoder.results.first;
-          print("${first.second.location.lat} , ${first.second.location.lng}");
-
-          setState(() {});
+          // From coordinates
+          // From coordinates
+          final coordinates = new Coordinates(33.6992, 72.9744);
+          final addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+          final first = addresses.first;
+          print("${first.featureName} : ${first.addressLine}");
+          // FetchGeocoder fetchGeocoder1 = await Geocoder2.getCoordinatesFromAddress(
+          //     address: "277 Bedford Ave, Brooklyn, NY 11211, USA",
+          //     googleMapApiKey: "GOOGLE_MAP_API_KEY");
+          // var second = fetchGeocoder.results.first;
+          // print("${first.second.location.lat} , ${first.second.location.lng}");
+          //
+          // setState(() {});
         },
         child: const Icon(Icons.search),
       ),

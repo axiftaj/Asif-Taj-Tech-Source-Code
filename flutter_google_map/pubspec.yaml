@@ -37,7 +37,7 @@ dependencies:
   google_maps_flutter: ^2.1.1
   custom_info_window: ^1.0.1
   geolocator: ^8.0.5
-  geocoder2: ^1.0.0
+  flutter_geocoder: ^0.2.2-nullsafety
 
   http:
   uuid: ^3.0.5
