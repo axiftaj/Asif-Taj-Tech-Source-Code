@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:googlemap/convert_latlang_to_address.dart';
 import 'package:googlemap/current_location.dart';
+import 'package:googlemap/google_search_places_api.dart';
 import 'package:googlemap/home_screen.dart';
 
 void main() {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CurrentLocationScreen(),
+      home:  ConvertLatLangToAddress(),
     );
   }
 }

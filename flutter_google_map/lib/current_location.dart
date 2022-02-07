@@ -71,13 +71,8 @@ void initState() {
         child: GoogleMap(
           initialCameraPosition: _kGooglePlex,
           mapType: MapType.normal,
-          zoomControlsEnabled: true,
-          zoomGesturesEnabled: true,
           myLocationButtonEnabled: true,
           myLocationEnabled: true,
-          trafficEnabled: false,
-          rotateGesturesEnabled: true,
-          buildingsEnabled: true,
           markers: Set<Marker>.of(_markers),
           onMapCreated: (GoogleMapController controller){
             _controller.complete(controller);

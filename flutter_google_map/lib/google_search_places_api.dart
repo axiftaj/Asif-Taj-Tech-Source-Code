@@ -38,7 +38,7 @@ class _CheckoutAddressLocationState extends State<CheckoutAddressLocation> {
   void getSuggestion(String input) async {
 
 
-    String kPLACES_API_KEY = "AIzaSyClYpe3KJC3r3g4d66CJC6lHXJOSSJKihc";
+    String kPLACES_API_KEY = "AIzaSyDAmUHmAnmkjKmXLDg5lYGm6dfkVaHsbUM";
     String type = '(regions)';
 
     try{
