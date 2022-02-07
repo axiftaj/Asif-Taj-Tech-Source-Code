@@ -38,17 +38,16 @@ class _ConvertLatLangToAddressState extends State<ConvertLatLangToAddress> {
         onPressed: () async {
 
           // From coordinates
-          // From coordinates
           final coordinates = new Coordinates(33.6992, 72.9744);
           final addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
           final first = addresses.first;
           print("${first.featureName} : ${first.addressLine}");
-          // FetchGeocoder fetchGeocoder1 = await Geocoder2.getCoordinatesFromAddress(
-          //     address: "277 Bedford Ave, Brooklyn, NY 11211, USA",
-          //     googleMapApiKey: "GOOGLE_MAP_API_KEY");
-          // var second = fetchGeocoder.results.first;
-          // print("${first.second.location.lat} , ${first.second.location.lng}");
-          //
+
+          // From a query
+          final query = "1600 Amphiteatre Parkway, Mountain View";
+          var add = await Geocoder.local.findAddressesFromQuery(query);
+          var second = add.first;
+          print("${second.featureName} : ${second.coordinates}");
           // setState(() {});
         },
         child: const Icon(Icons.search),
