@@ -24,7 +24,6 @@ class _BuyerHomeScreenState extends State<BuyerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<BuyerUserModel> getUserData() => BuyerUserPreferences().getUser();
     return WillPopScope(
       onWillPop: ()async{
         SystemNavigator.pop() ;
@@ -149,7 +148,6 @@ class _BuyerHomeScreenState extends State<BuyerHomeScreen> {
                   )
                 ],
               ),
-
             ],
           ),
         ),

@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:bazar_updated/view/common_screen/login/login_screen.dart';
+import 'package:bazar_updated/viewmodel/buyer/buyer_repositories/check_user_login.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,19 +10,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  UserLogin userLogin = UserLogin ();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    isUserLogin();
-  }
-
-  Future<void> isUserLogin() async {
-    Timer(
-        const Duration(seconds: 3),
-            () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const LoginScreen())));
-
+    userLogin.isUserLogin(context);
   }
 
   @override
