@@ -8,7 +8,6 @@ class MyTextField extends StatelessWidget {
      Key? key,
     required this.myController,
     required  this.focusNode,
-    required this.myValidator,
     required this.onChangeValue ,
     required this.onFiledSubmittedValue ,
     required this.keyBoardType,
@@ -18,7 +17,6 @@ class MyTextField extends StatelessWidget {
 
   final TextEditingController myController;
   final FocusNode focusNode;
-  final FormFieldValidator<String> myValidator ;
   final ValueChanged<String> onChangeValue ;
   final FormFieldSetter onFiledSubmittedValue ;
   final TextInputType keyBoardType ;
@@ -33,18 +31,17 @@ class MyTextField extends StatelessWidget {
         keyboardType: keyBoardType,
         controller: myController,
         focusNode: focusNode,
-        style: Theme.of(context).textTheme.subtitle1 ,
+        style: Theme.of(context).textTheme.headline6!.copyWith(color: Color(0xff2D3142)) ,
         onFieldSubmitted: onFiledSubmittedValue ,
-        decoration:  const InputDecoration(
-          contentPadding:
-          EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
+        decoration:   InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
+          hintStyle: Theme.of(context).textTheme.headline6,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
           errorBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
         ),
         onChanged: onChangeValue ,
-        validator: myValidator,
 
       ),
     );

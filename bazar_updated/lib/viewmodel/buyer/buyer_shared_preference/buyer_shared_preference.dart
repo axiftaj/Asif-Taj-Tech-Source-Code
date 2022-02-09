@@ -49,7 +49,7 @@ class BuyerUserPreferences {
 
 // Future<String> getToken(args) async {
 //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-//   String token = prefs.getString("token");
+//   String? token = prefs.getString(args) ??;
 //   return token;
 // }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>812752825736-e2vqo8uf2vk8o3q13jd395ddet4807ic.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.812752825736-e2vqo8uf2vk8o3q13jd395ddet4807ic</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>812752825736-bouet5au4avqdj9lk8s4qvf0fn33h68o.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCNJ5eXImuupCQ0LH5OAGERyBOCjMucN5I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>812752825736</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.techease.bazarmart</string>
+	<key>PROJECT_ID</key>
+	<string>bazar-abccb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bazar-abccb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:812752825736:ios:a6b271196fde80c5bd1e3d</string>
+</dict>
+</plist>

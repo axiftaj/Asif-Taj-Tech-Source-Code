@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "812752825736",
+    "project_id": "bazar-abccb",
+    "storage_bucket": "bazar-abccb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812752825736:android:e2a43b047ff063b6bd1e3d",
+        "android_client_info": {
+          "package_name": "com.techease.bazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812752825736-srlr01bmbu7ihtc9jn50bdgn3sa7p7bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techease.bazar",
+            "certificate_hash": "64f7362a6d0f7bcfcfbaf9be10db474a730f6195"
+          }
+        },
+        {
+          "client_id": "812752825736-3kg5m2aim87ka0i2310tkm6nmd13ol3t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCinSy0HXwpasP_8RcINHNS2a0o-gX5hrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812752825736-3kg5m2aim87ka0i2310tkm6nmd13ol3t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "812752825736-nctrhai3toftnjvc7mpjr0els8m7mjbq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techease.bazar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

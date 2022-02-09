@@ -5,8 +5,15 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     primarySwatch: MyColors.navy,
-    appBarTheme: const AppBarTheme(
-        titleTextStyle: TextStyle(
+    scaffoldBackgroundColor: const Color(0xffF8F9FA),
+
+    appBarTheme: const  AppBarTheme(
+      elevation: 0,
+        iconTheme: IconThemeData(
+            color: Colors.black
+        ),
+      backgroundColor:  Color(0xffF8F9FA) ,
+        titleTextStyle:  TextStyle(
             fontSize: 18, color: MyColors.primaryTextTextColor,
             fontFamily: 'Avenir Heavy')
     ),
