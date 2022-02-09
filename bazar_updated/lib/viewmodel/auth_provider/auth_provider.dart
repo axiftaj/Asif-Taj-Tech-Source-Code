@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bazar_updated/model/buyer_model/buyer_user_model.dart';
 import 'package:bazar_updated/view/utilz/app_url.dart';
 import 'package:bazar_updated/view/utilz/general_utilities.dart';
+import 'package:bazar_updated/view/utilz/route_name.dart';
 import 'package:bazar_updated/viewmodel/auth_provider/show_spinner_provider.dart';
+import 'package:bazar_updated/viewmodel/buyer/buyer_shared_preference/buyer_shared_preference.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +50,7 @@ class AuthProvider with ChangeNotifier {
 
       Map<String, dynamic> data = jsonDecode(response.body.toString()) ;
 
-      print(data);
+   //   print(data);
 
       if( response.statusCode == 200){
 
@@ -70,10 +73,19 @@ class AuthProvider with ChangeNotifier {
 
             }else {
 
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => BuyersDashboardScreen()),
-              // );
+
+              BuyerUserModel authUser = BuyerUserModel(
+                userId: data['data']['id'] ,
+                phone: data['data']['phone'] ,
+                  address: data['data']['address'][0]['location']  ,
+                  userType: data['data']['user_type'],
+                  username: data['data']['name']
+              );
+
+              BuyerUserPreferences().saveUser(authUser);
+
+              Navigator.pushNamed(context, RouteName.buyerDashboard);
+
             }
 
           }else  if ( data['data']['user_type'] == 'seller'){

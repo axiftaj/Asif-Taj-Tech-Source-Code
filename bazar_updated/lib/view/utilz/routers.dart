@@ -1,3 +1,4 @@
+import 'package:bazar_updated/view/buyer/buyer_dashboard/buyer_dashboard.dart';
 import 'package:bazar_updated/view/common_screen/login/login_screen.dart';
 import 'package:bazar_updated/view/common_screen/option_screen.dart';
 import 'package:bazar_updated/view/common_screen/splash_screen.dart';
@@ -15,6 +16,11 @@ class Routers {
         return MaterialPageRoute(builder: (_) => const OptionScreen());
       case RouteName.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+
+        //buyer dashboard screen
+      case RouteName.buyerDashboard:
+        return MaterialPageRoute(builder: (_) => const BuyerDashboardScreen());
+
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
