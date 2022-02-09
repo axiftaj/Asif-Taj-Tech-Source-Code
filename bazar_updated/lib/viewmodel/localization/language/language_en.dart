@@ -175,7 +175,6 @@ class LanguageEn extends Languages {
   @override
   String get searchForSomeThing => "Search for something.." ;
 
-  @override
   String get itemDetail => "itemDetail";
 
   @override
@@ -276,6 +275,7 @@ class LanguageEn extends Languages {
   @override
   String get waitingForConfirmation => "Waiting for confirmation" ;
 
+  @override
   String get upCommingOrder => "Upcoming Order";
 
   @override

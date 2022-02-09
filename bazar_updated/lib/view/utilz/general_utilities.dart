@@ -22,9 +22,9 @@ class GeneralUtilities {
     ));
   }
 
-  static height(double) {
+  static height(value) {
     return SizedBox(
-      height: double,
+      height: value,
     );
   }
 

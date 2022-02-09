@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 
 
 class MyTextField extends StatelessWidget {
-  MyTextField({
+   const MyTextField({
      Key? key,
     required this.myController,
     required  this.focusNode,
@@ -33,7 +33,7 @@ class MyTextField extends StatelessWidget {
         keyboardType: keyBoardType,
         controller: myController,
         focusNode: focusNode,
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.subtitle1 ,
         onFieldSubmitted: onFiledSubmittedValue ,
         decoration:  const InputDecoration(
           contentPadding:

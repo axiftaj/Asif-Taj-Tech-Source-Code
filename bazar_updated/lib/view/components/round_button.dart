@@ -19,7 +19,7 @@ class RoundButton extends StatelessWidget {
         height: 45.0,
         child: Text(
           title,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white),
         ),
       ),
     );
