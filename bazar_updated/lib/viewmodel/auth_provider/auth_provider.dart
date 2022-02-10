@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bazar_updated/model/buyer_model/buyer_user_model.dart';
+import 'package:bazar_updated/model/user_model.dart';
 import 'package:bazar_updated/view/utilz/app_url.dart';
 import 'package:bazar_updated/view/utilz/general_utilities.dart';
 import 'package:bazar_updated/view/utilz/route_name.dart';
@@ -74,7 +74,7 @@ class AuthProvider with ChangeNotifier {
             }else {
 
 
-              BuyerUserModel authUser = BuyerUserModel(
+              UserModel authUser = UserModel(
                 userId: data['data']['id'] ,
                 phone: data['data']['phone'] ,
                   address: data['data']['address'][0]['location']  ,

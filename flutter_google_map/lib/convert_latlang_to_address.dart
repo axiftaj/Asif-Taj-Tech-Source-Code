@@ -20,7 +20,7 @@ class _ConvertLatLangToAddressState extends State<ConvertLatLangToAddress> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                const Text('latitude: 37.597576, longitude: 55.771899'),
+                 Text('latitude: 37.597576, longitude: 55.771899'),
              //   Text(address),
               ],
             ),

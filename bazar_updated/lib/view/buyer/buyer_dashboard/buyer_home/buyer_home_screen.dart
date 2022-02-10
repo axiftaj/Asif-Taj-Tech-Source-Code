@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:bazar_updated/model/buyer_model/buyer_user_model.dart';
+import 'package:bazar_updated/model/user_model.dart';
 import 'package:bazar_updated/view/utilz/colors.dart';
 import 'package:bazar_updated/view/utilz/constants.dart';
 import 'package:bazar_updated/viewmodel/buyer/buyer_shared_preference/buyer_shared_preference.dart';
@@ -79,7 +79,7 @@ class _BuyerHomeScreenState extends State<BuyerHomeScreen> {
                               children: [
                                 const Icon(Icons.room , color: Colors.white,size: 12,),
                                 const SizedBox(width: 5,),
-                                FutureBuilder<BuyerUserModel>(
+                                FutureBuilder<UserModel>(
                                   future: BuyerUserPreferences().getUser() ,
                                     builder: (context, snapshot){
                                       if(!snapshot.hasData){

@@ -1,4 +1,4 @@
-class BuyerUserModel {
+class UserModel {
 
 
   int userId;
@@ -7,11 +7,11 @@ class BuyerUserModel {
   String userType ;
   String address ;
 
-  BuyerUserModel({required this.userId ,required  this.username ,required this.phone , required this.userType, required this.address}) ;
+  UserModel({required this.userId ,required  this.username ,required this.phone , required this.userType, required this.address}) ;
 
 
-  factory BuyerUserModel.fromJson(Map<String, dynamic> responseData) {
-    return BuyerUserModel(
+  factory UserModel.fromJson(Map<String, dynamic> responseData) {
+    return UserModel(
       userId: responseData['userId'],
       username: responseData['username'],
       phone: responseData['phone'],

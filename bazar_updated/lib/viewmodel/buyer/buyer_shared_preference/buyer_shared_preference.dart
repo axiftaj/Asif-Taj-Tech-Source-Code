@@ -1,10 +1,10 @@
-import 'package:bazar_updated/model/buyer_model/buyer_user_model.dart';
+import 'package:bazar_updated/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
 class BuyerUserPreferences {
 
-  Future<bool> saveUser(BuyerUserModel user) async {
+  Future<bool> saveUser(UserModel user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("userId", user.userId);
@@ -16,7 +16,7 @@ class BuyerUserPreferences {
     return true;
   }
 
-  Future<BuyerUserModel> getUser() async {
+  Future<UserModel> getUser() async {
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -27,7 +27,7 @@ class BuyerUserPreferences {
     String address = prefs.getString("address") ?? "";
 
 
-    return BuyerUserModel(
+    return UserModel(
       userId: userId,
       username: userName,
       phone: phone,
