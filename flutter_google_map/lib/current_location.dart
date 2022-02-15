@@ -14,23 +14,24 @@ class CurrentLocationScreen extends StatefulWidget {
 
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
+  final Completer<GoogleMapController> _controller = Completer();
+
 
   Future<Position> _getUserCurrentLocation() async {
 
-    try {
 
-      return await Geolocator.getCurrentPosition();
+    await Geolocator.requestPermission().then((value) {
 
-    } on PlatformException catch (err) {
+    }).onError((error, stackTrace){
+      print(error.toString());
+    });
 
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
+    return await Geolocator.getCurrentPosition();
+
   }
 
-  final Completer<GoogleMapController> _controller = Completer();
 
-  List<Marker> _markers =  <Marker>[];
+  final List<Marker> _markers =  <Marker>[];
 
   static const CameraPosition _kGooglePlex =  CameraPosition(
     target: LatLng(33.6844, 73.0479),
@@ -46,21 +47,14 @@ List<Marker> list = const [
           title: 'The title of the marker'
       )
   ),
-  Marker(
-      markerId: MarkerId('2'),
-      position: LatLng(33.6694 , 72.9972),
-      infoWindow: InfoWindow(
-          title: 'G-11 Islamabad'
-      )
-  ),
+
 ];
 
 @override
 void initState() {
   // TODO: implement initState
   super.initState();
-  _markers.addAll(
-      list);
+  _markers.addAll(list);
 }
 
 
@@ -83,12 +77,11 @@ void initState() {
       floatingActionButton: FloatingActionButton(
         onPressed: ()async {
           _getUserCurrentLocation().then((value) async {
-            print('mylocation'+value.latitude.toString() +value.longitude.toString());
             _markers.add(
                 Marker(
-                    markerId: MarkerId('SomeId'),
+                    markerId: const MarkerId('SomeId'),
                     position: LatLng(value.latitude ,value.longitude),
-                    infoWindow: InfoWindow(
+                    infoWindow: const InfoWindow(
                         title: 'My Current Position'
                     )
                 )
