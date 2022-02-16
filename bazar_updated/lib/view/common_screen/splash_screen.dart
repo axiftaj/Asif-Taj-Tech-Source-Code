@@ -1,4 +1,4 @@
-import 'package:bazar_updated/viewmodel/buyer/buyer_repositories/check_user_login.dart';
+import 'package:bazar_updated/viewmodel/buyer/buyer_services/check_user_login.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

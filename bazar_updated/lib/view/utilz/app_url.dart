@@ -1,6 +1,10 @@
 
 class AppUrls {
 
+  //domain url
+  //   static const DomainURL =  "http://54.198.37.138:3000/api/v1/" ;
+
+
   // testing domain url
   static const domainUrl =  "http://54.198.37.138:6000/api/v1/" ;
 

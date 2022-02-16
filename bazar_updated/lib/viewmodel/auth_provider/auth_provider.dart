@@ -77,7 +77,7 @@ class AuthProvider with ChangeNotifier {
               UserModel authUser = UserModel(
                 userId: data['data']['id'] ,
                 phone: data['data']['phone'] ,
-                  address: data['data']['address'][0]['location']  ,
+                  address: data['data']['address'] == "" ? "XYZ address" : data['data']['address'][0]['location']  ,
                   userType: data['data']['user_type'],
                   username: data['data']['name']
               );
