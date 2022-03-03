@@ -12,6 +12,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bazar_updated/model/buyer_model/products_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BuyerHomeScreen extends StatefulWidget {
   const BuyerHomeScreen({Key? key}) : super(key: key);
@@ -22,11 +23,22 @@ class BuyerHomeScreen extends StatefulWidget {
 
 class _BuyerHomeScreenState extends State<BuyerHomeScreen> {
 
+  bool show1 = false;
+  bool show2 = false;
+
   TextEditingController searchController = TextEditingController();
   String searchString = '';
   String address = "" ;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
+    Future.delayed(Duration(milliseconds: 400),(){setState(() {show1 = true;});});
+    Future.delayed(Duration(milliseconds: 600),(){setState(() {show2 = true;});});
+
+  }
   @override
   Widget build(BuildContext context) {
     HomeServices homeServices = HomeServices();
@@ -181,15 +193,56 @@ class _BuyerHomeScreenState extends State<BuyerHomeScreen> {
                               child: FutureBuilder(
                                 future: homeServices.getProductApi(snap.data!.userId.toString()),
                                 builder: (BuildContext context, AsyncSnapshot<ProductsModel> snapshot) {
-                                  print(snapshot);
-                                  if(snapshot.hasError){
+
+                                  if(snapshot.hasData){
+                                    return   ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: 4,
+                                        itemBuilder: (context, index){
+                                          return Padding(
+                                            padding: const EdgeInsets.only(right: 10),
+                                            child: Shimmer.fromColors(
+                                              baseColor: Colors.grey.shade300,
+                                              highlightColor: Colors.grey.shade100,
+                                              child: Container(
+                                                width : MediaQuery.of(context).size.width * 0.35,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white
+                                                ),
+                                                child:Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    CachedNetworkImage(
+                                                      fit: BoxFit.fill,
+                                                      height: MediaQuery.of(context).size.height * 0.15,
+                                                      width: MediaQuery.of(context).size.width * 0.25,
+                                                      placeholder: (context, url) => Container(height: 15 ,width: 15, child: Center(child: const CircularProgressIndicator())),
+                                                      errorWidget: (context, url, error) => Center(child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Icon(Icons.error , color: MyColors.primaryColor,),
+                                                          SizedBox(height: 10,),
+                                                          Text('Error')
+                                                        ],
+                                                      )), imageUrl: 'adsf'
+                                                        'adf',
+                                                    ),
+
+                                                    Text("asdf" ,overflow: TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      softWrap: false,  textAlign: TextAlign.center, style: TextStyle(color: Color(0xff01000D) , fontSize: 15 , fontFamily: aBook),)
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                  }
+                                  else if(snapshot.hasError){
                                     return const BuyerErrorMessageWidget();
-                                  } else if (snapshot.data == null) {
-                                    return Container(
-                                      child: Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                    );
                                   }
                                   else if (snapshot.data!.data!.frequentlyOrdered!.isEmpty == 0) {
                                     return const Center(

@@ -41,6 +41,7 @@ dependencies:
   google_maps_flutter: ^2.1.1
   flutter_local_notifications: ^9.2.0
   intl: ^0.17.0
+  shimmer: ^2.0.0
   cached_network_image: ^3.2.0
   connectivity_plus: ^2.2.0
   country_code_picker: ^2.0.2
