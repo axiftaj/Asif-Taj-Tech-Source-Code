@@ -5,6 +5,8 @@ import 'package:googlemap/custom_marker.dart';
 import 'package:googlemap/custom_marker_info_window.dart';
 import 'package:googlemap/google_search_places_api.dart';
 import 'package:googlemap/home_screen.dart';
+import 'package:googlemap/polygone_screen.dart';
+import 'package:googlemap/polyline_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  CustomMarkerInfoWindowScreen(),
+      home:  PolylineScreen(),
     );
   }
 }

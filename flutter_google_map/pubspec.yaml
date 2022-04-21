@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^8.0.5
   flutter_geocoder: ^0.2.2-nullsafety
   geocoding: ^2.0.4
+  flutter_polyline_points: ^1.0.0
 
   modal_bottom_sheet: ^2.0.1
 
