@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -14,6 +15,7 @@ class CurrentLocationScreen extends StatefulWidget {
 
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
+  String address = '' ;
   final Completer<GoogleMapController> _controller = Completer();
 
 
@@ -55,50 +57,112 @@ void initState() {
   // TODO: implement initState
   super.initState();
   _markers.addAll(list);
+  //loadData();
 }
 
+loadData(){
+  _getUserCurrentLocation().then((value) async {
+    _markers.add(
+        Marker(
+            markerId: const MarkerId('SomeId'),
+            position: LatLng(value.latitude ,value.longitude),
+            infoWindow: const InfoWindow(
+                title: 'My Current Position'
+            )
+        )
+    );
 
+    final GoogleMapController controller = await _controller.future;
+    CameraPosition _kGooglePlex =  CameraPosition(
+      target: LatLng(value.latitude ,value.longitude),
+      zoom: 14,
+    );
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
+    setState(() {
+
+    });
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.deepOrange,
+        title: Text('Flutter Google Map'),
+      ),
       body: SafeArea(
-        child: GoogleMap(
-          initialCameraPosition: _kGooglePlex,
-          mapType: MapType.normal,
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
-          markers: Set<Marker>.of(_markers),
-          onMapCreated: (GoogleMapController controller){
-            _controller.complete(controller);
-          },
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            GoogleMap(
+              initialCameraPosition: _kGooglePlex,
+              mapType: MapType.normal,
+              myLocationButtonEnabled: true,
+              myLocationEnabled: true,
+              markers: Set<Marker>.of(_markers),
+              onMapCreated: (GoogleMapController controller){
+                _controller.complete(controller);
+              },
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * .2,
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      _getUserCurrentLocation().then((value) async {
+                        _markers.add(
+                            Marker(
+                                markerId: const MarkerId('SomeId'),
+                                position: LatLng(value.latitude ,value.longitude),
+                                infoWindow: const InfoWindow(
+                                    title: 'My Current Position'
+                                )
+                            )
+                        );
+                        final GoogleMapController controller = await _controller.future;
+
+                        CameraPosition _kGooglePlex =  CameraPosition(
+                          target: LatLng(value.latitude ,value.longitude),
+                          zoom: 14,
+                        );
+                        controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
+                        final coordinates =  Coordinates(value.latitude ,value.longitude);
+                        final addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+                        final add = addresses.first;
+                        address = add.locality.toString() +" "+add.addressLine.toString()+" "+add.countryName.toString()+" "+add.countryName.toString();
+
+                        setState(() {
+
+                        });
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10 , horizontal: 20),
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrange,
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                        child: Center(child: Text('Current Location' , style: TextStyle(color: Colors.white),)),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(address),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
 
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: ()async {
-          _getUserCurrentLocation().then((value) async {
-            _markers.add(
-                Marker(
-                    markerId: const MarkerId('SomeId'),
-                    position: LatLng(value.latitude ,value.longitude),
-                    infoWindow: const InfoWindow(
-                        title: 'My Current Position'
-                    )
-                )
-            );
-
-            final GoogleMapController controller = await _controller.future;
-            CameraPosition _kGooglePlex =  CameraPosition(
-              target: LatLng(value.latitude ,value.longitude),
-              zoom: 14,
-            );
-            controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
-            setState(() {
-
-            });
-          });
-        },
-        child: Icon(Icons.location_disabled_outlined),
       ),
     );
   }
