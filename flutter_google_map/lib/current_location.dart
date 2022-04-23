@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -41,48 +42,48 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   );
 
 
-List<Marker> list = const [
-  Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(33.6844, 73.0479),
-      infoWindow: InfoWindow(
-          title: 'The title of the marker'
-      )
-  ),
-
-];
-
-@override
-void initState() {
-  // TODO: implement initState
-  super.initState();
-  _markers.addAll(list);
-  //loadData();
-}
-
-loadData(){
-  _getUserCurrentLocation().then((value) async {
-    _markers.add(
-        Marker(
-            markerId: const MarkerId('SomeId'),
-            position: LatLng(value.latitude ,value.longitude),
-            infoWindow: const InfoWindow(
-                title: 'My Current Position'
-            )
+  List<Marker> list = const [
+    Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(33.6844, 73.0479),
+        infoWindow: InfoWindow(
+            title: 'some Info '
         )
-    );
+    ),
 
-    final GoogleMapController controller = await _controller.future;
-    CameraPosition _kGooglePlex =  CameraPosition(
-      target: LatLng(value.latitude ,value.longitude),
-      zoom: 14,
-    );
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
-    setState(() {
+  ];
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _markers.addAll(list);
+    //loadData();
+  }
+
+  loadData(){
+    _getUserCurrentLocation().then((value) async {
+      _markers.add(
+          Marker(
+              markerId: const MarkerId('SomeId'),
+              position: LatLng(value.latitude ,value.longitude),
+              infoWindow:  InfoWindow(
+                  title: address
+              )
+          )
+      );
+
+      final GoogleMapController controller = await _controller.future;
+      CameraPosition _kGooglePlex =  CameraPosition(
+        target: LatLng(value.latitude ,value.longitude),
+        zoom: 14,
+      );
+      controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
+      setState(() {
+
+      });
     });
-  });
-}
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +108,10 @@ loadData(){
             ),
             Container(
               height: MediaQuery.of(context).size.height * .2,
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40)
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,8 +123,8 @@ loadData(){
                             Marker(
                                 markerId: const MarkerId('SomeId'),
                                 position: LatLng(value.latitude ,value.longitude),
-                                infoWindow: const InfoWindow(
-                                    title: 'My Current Position'
+                                infoWindow:  InfoWindow(
+                                    title: address
                                 )
                             )
                         );
@@ -131,10 +135,12 @@ loadData(){
                           zoom: 14,
                         );
                         controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
-                        final coordinates =  Coordinates(value.latitude ,value.longitude);
-                        final addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-                        final add = addresses.first;
-                        address = add.locality.toString() +" "+add.addressLine.toString()+" "+add.countryName.toString()+" "+add.countryName.toString();
+
+                        List<Placemark> placemarks = await placemarkFromCoordinates(value.latitude ,value.longitude);
+
+
+                        final add = placemarks.first;
+                        address = add.locality.toString() +" "+add.administrativeArea.toString()+" "+add.subAdministrativeArea.toString()+" "+add.country.toString();
 
                         setState(() {
 
@@ -145,9 +151,10 @@ loadData(){
                       padding: const EdgeInsets.symmetric(vertical: 10 , horizontal: 20),
                       child: Container(
                         height: 40,
+
                         decoration: BoxDecoration(
-                          color: Colors.deepOrange,
-                          borderRadius: BorderRadius.circular(8)
+                            color: Colors.deepOrange,
+                            borderRadius: BorderRadius.circular(8)
                         ),
                         child: Center(child: Text('Current Location' , style: TextStyle(color: Colors.white),)),
                       ),
