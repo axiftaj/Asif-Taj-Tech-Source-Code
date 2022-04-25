@@ -26,7 +26,7 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
   final List<Marker> _markers =  <Marker>[];
 
   static const CameraPosition _kGooglePlex =  CameraPosition(
-    target: LatLng(33.6844, 73.0479),
+    target: LatLng(33.6941, 72.9734),
     zoom: 14,
   );
 
@@ -58,7 +58,7 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
       if(i == 1 ){
         _markers.add(Marker(
                 markerId: MarkerId('2'),
-                position: LatLng(33.6992,  72.9744),
+                position: LatLng(33.6941, 72.9734),
                 icon: BitmapDescriptor.fromBytes(markerIcon),
                 infoWindow: InfoWindow(
                     title: 'The title of the marker'
@@ -67,7 +67,7 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
       }else {
         _markers.add( Marker(
             markerId: MarkerId(i.toString()),
-            position: LatLng(33.6844, 73.0479),
+            position: LatLng(33.7008, 72.9682),
             icon: BitmapDescriptor.fromBytes(markerIcon),
             infoWindow: InfoWindow(
                 title: 'The title of the marker'
