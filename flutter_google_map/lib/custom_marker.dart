@@ -20,10 +20,11 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
 
   final Completer<GoogleMapController> _controller = Completer();
 
-  List<String> images = [ 'images/car.png' , 'images/marker.png' ,];
+  List<String> images = [ 'images/car.png' , 'images/marker.png' , 'images/motorcycle.png' ,];
 
   Uint8List? markerImage;
   final List<Marker> _markers =  <Marker>[];
+  final List<LatLng> _latLang =  <LatLng>[LatLng(33.6941, 72.9734), LatLng(33.7008, 72.9682) ,LatLng(33.6992, 72.9744)];
 
   static const CameraPosition _kGooglePlex =  CameraPosition(
     target: LatLng(33.6941, 72.9734),
@@ -39,9 +40,6 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
 
   }
 
-
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -52,28 +50,16 @@ class _CustomMarkerScreenState extends State<CustomMarkerScreen> {
   loadData()async{
 
     for(int i = 0 ; i < images.length ; i++){
-      print('name'+images[i].toString());
+
       final Uint8List markerIcon = await getBytesFromAsset(images[i].toString(), 100);
-
-      if(i == 1 ){
-        _markers.add(Marker(
-                markerId: MarkerId('2'),
-                position: LatLng(33.6941, 72.9734),
-                icon: BitmapDescriptor.fromBytes(markerIcon),
-                infoWindow: InfoWindow(
-                    title: 'The title of the marker'
-                )
-            ));
-      }else {
-        _markers.add( Marker(
-            markerId: MarkerId(i.toString()),
-            position: LatLng(33.7008, 72.9682),
-            icon: BitmapDescriptor.fromBytes(markerIcon),
-            infoWindow: InfoWindow(
-                title: 'The title of the marker'
-            )));
-      }
-
+      _markers.add(Marker(
+          markerId: MarkerId(i.toString()),
+          position: _latLang[i],
+          icon: BitmapDescriptor.fromBytes(markerIcon),
+          infoWindow: InfoWindow(
+              title: 'The title of the marker'
+          )
+      ));
       setState(() {
 
       });
