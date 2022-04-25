@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
-class CheckoutAddressLocation extends StatefulWidget {
+class GoogleSearchPlacesApi extends StatefulWidget {
 
   @override
-  _CheckoutAddressLocationState createState() => _CheckoutAddressLocationState();
+  _GoogleSearchPlacesApiState createState() => _GoogleSearchPlacesApiState();
 }
 
-class _CheckoutAddressLocationState extends State<CheckoutAddressLocation> {
+class _GoogleSearchPlacesApiState extends State<GoogleSearchPlacesApi> {
 
 
   var _controller = TextEditingController();
@@ -67,8 +67,7 @@ class _CheckoutAddressLocationState extends State<CheckoutAddressLocation> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text('Pick Location' ,),
+        title: Text('Google Map Search places Api' ,),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +82,9 @@ class _CheckoutAddressLocationState extends State<CheckoutAddressLocation> {
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 prefixIcon: Icon(Icons.map),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.cancel), onPressed: () {  },
+                  icon: Icon(Icons.cancel), onPressed: () {
+                  _controller.clear() ;
+                },
                 ),
               ),
             ),
